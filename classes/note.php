@@ -13,7 +13,7 @@ class Note
         $this->setValeurNote($valeurNote);
     }
 
-    public function getId_etudiant($id_etudiant)
+    public function getId_etudiant()
     {
 
         return $this->id_etudiant;
@@ -21,27 +21,27 @@ class Note
 
     public function setId_etudiant($id_etudiant)
     {
-        if ($id_etudiant < 1 || $id_etudiant > 500) {
+        if (empty($id_etudiant)) {
             throw new \Exception("L'id étudiant ne peut être vide !");
         }
 
         $this->id_etudiant = $id_etudiant;
     }
 
-    public function getId_matiere($id_matiere)
+    public function getId_matiere()
     {
-        return $this->$id_matiere;
+        return $this->id_matiere;
     }
 
     public function setId_matiere($id_matiere)
     {
-        if ($id_matiere < 1 || $id_matiere > 20) {
+        if (empty($id_matiere)) {
             throw new \Exception("L'id de la matière ne peut être vide !");
         }
         $this->id_matiere = $id_matiere;
     }
 
-    public function getValeurNote($valeurNote)
+    public function getValeurNote()
     {
 
         return $this->valeurNote;

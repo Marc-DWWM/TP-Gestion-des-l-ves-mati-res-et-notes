@@ -1,9 +1,7 @@
 <?php
 require_once 'includes/database.php';
 
-$nom = trim($_POST['nom'] ?? "");
-$prenom = trim($_POST['prenom'] ?? "");
-$matricule = trim($_POST['matricule'] ?? "");
+
 
 class Etudiant
 {
@@ -52,22 +50,9 @@ class Etudiant
     public function setMatricule($matricule)
     {
 
-        if ($matricule < 1 || $matricule > 500) {
-            throw new \Exception("Le matricule doit être un nombre entre 1 et 500 !");
+        if (empty($matricule)) {
+            throw new \Exception("Le matricule ne peut être vide !");
         }
         $this->matricule = $matricule;
     }
-
-    public function Enregistrement($pdo)
-    {
-        $sql = "INSERT INTO etudiants (nom, prenom, matricule)
-    VALUES (:nom, :prenom, :matricule)";
-
-        $stmt = $pdo->prepare($sql);
-
-        $stmt->execute([':nom' => $this->nom, ':prenom' => $this->prenom, ':matricule' => $this->matricule]);
-        header("location: ajoutMatiere.php");
-        exit();
-    }
 }
-?>

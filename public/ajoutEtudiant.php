@@ -1,10 +1,11 @@
 <?php
 
-if($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['matricule'])) {
     $nom = trim($_POST['nom'] ?? "");
     $prenom = trim($_POST['prenom'] ?? "");
     $matricule = trim($_POST['matricule'] ?? "");
 }
+
 
 ?>
 
@@ -20,7 +21,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <form action="class/traitementEtudiant.php" method="POST">
+    <form action="traitementEtudiant.php" method="POST">
         <div>
             <label for="nom">Nom : </label>
             <input type="text" name="nom" id="nom">
@@ -31,7 +32,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <div>
             <label for="matricule">Matricule : </label>
-            <input type="number" name="matricule" id="matricule">
+            <input type="text" name="matricule" id="matricule">
         </div>
         <button type="submit">Entrez</button>
     </form>

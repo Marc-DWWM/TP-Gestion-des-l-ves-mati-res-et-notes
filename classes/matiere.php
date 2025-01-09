@@ -11,7 +11,7 @@ class Matiere
         $this->setCodeMatiere($codeMatiere);
     }
 
-    public function getNomMatiere($nomMatiere)
+    public function getNomMatiere()
     {
 
         return $this->nomMatiere;
@@ -27,13 +27,13 @@ class Matiere
         $this->nomMatiere = $nomMatiere;
     }
 
-    public function getCodeMatiere($codeMatiere) {
+    public function getCodeMatiere() {
         return $this->codeMatiere;
     }
 
     public function setCodeMatiere($codeMatiere) {
 
-        if($codeMatiere < 1 || $codeMatiere > 20) {
+        if(empty($codeMatiere)) {
             throw new \Exception("Le code de la matière ne peut être vide !");
         }
         $this->codeMatiere = $codeMatiere;

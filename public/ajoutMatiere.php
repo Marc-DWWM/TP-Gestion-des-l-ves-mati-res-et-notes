@@ -1,5 +1,9 @@
-<?php 
-
+<?php
+if (isset($_POST['nomMatiere']) && isset($_POST['codeMatiere'])) {
+    
+    $nomMatiere = trim($_POST['nomMatiere'] ?? "");
+    $codeMatiere = trim($_POST['codeMatiere'] ?? "");
+}
 ?>
 
 
@@ -13,14 +17,14 @@
 </head>
 
 <body>
-    <form action="" method="POST">
+    <form action="traitementMatiere.php" method="POST">
         <div>
             <label for="nomMatiere">Nom de la matière : </label>
             <input type="text" name="nomMatiere" id="nomMatiere">
         </div>
         <div>
             <label for="codeMatiere">Code de la matière : </label>
-            <input type="number" name="codeMatiere" id="codeMatiere">
+            <input type="text" name="codeMatiere" id="codeMatiere">
         </div>
         <button type="submit">Entrez</button>
     </form>
