@@ -1,18 +1,16 @@
-<?php 
-include __DIR__  ."/../includes/database.php";
+<?php
+session_start();
+require_once __DIR__ . "/../classes/GestionNotes.php";
 
 $pdo = Database::getConnection();
 
 $id_etudiant = trim($_POST['id_etudiant'] ?? "");
 $id_matiere = trim($_POST['id_matiere'] ?? "");
 $valeurNote = trim($_POST['valeurNote'] ?? "");
+$note = new Note($id_etudiant, $id_matiere, $valeurNote);
+$gestion = new GestionNote();
 
-$sql = "INSERT INTO notes (id_etudiant, id_matiere, valeurNote)
-VALUES (:id_etudiant, :id_matiere, :valeurNote)";
-
-$stmt = $pdo->prepare($sql);
-$stmt->execute([':id_etudiant' => $id_etudiant, ':id_matiere' => $id_matiere, 'valeurNote' => $valeurNote]);
+$gestion->attribuerNote($note);
 
 header("location: index.php");
 exit();
-?>

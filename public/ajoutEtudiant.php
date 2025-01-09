@@ -1,4 +1,9 @@
 <?php
+session_start();
+
+if(empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
 
 if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['matricule'])) {
     $nom = trim($_POST['nom'] ?? "");
@@ -22,6 +27,8 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['matricule']
 
 <body>
     <form action="traitementEtudiant.php" method="POST">
+    <input type="hidden" name="csrf_token" 
+    value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
         <div>
             <label for="nom">Nom : </label>
             <input type="text" name="nom" id="nom">

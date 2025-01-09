@@ -1,6 +1,7 @@
 <?php
+session_start();
 if (isset($_POST['nomMatiere']) && isset($_POST['codeMatiere'])) {
-    
+
     $nomMatiere = trim($_POST['nomMatiere'] ?? "");
     $codeMatiere = trim($_POST['codeMatiere'] ?? "");
 }
@@ -18,6 +19,7 @@ if (isset($_POST['nomMatiere']) && isset($_POST['codeMatiere'])) {
 
 <body>
     <form action="traitementMatiere.php" method="POST">
+        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION["csrf_token"]; ?>">
         <div>
             <label for="nomMatiere">Nom de la matière : </label>
             <input type="text" name="nomMatiere" id="nomMatiere">
