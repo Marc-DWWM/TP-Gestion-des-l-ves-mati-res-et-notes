@@ -47,7 +47,7 @@ VALUES (:id_etudiant, :id_matiere, :valeurNote)";
 
     public function calculerMoyenneEtudiant()
     {
-        $sql = "SELECT id_etudiant AVG(valeurNote)
+        $sql = "SELECT id_etudiant, AVG(valeurNote)
         FROM notes
         GROUP BY id_etudiant";
 
@@ -59,14 +59,14 @@ VALUES (:id_etudiant, :id_matiere, :valeurNote)";
     {
         $sql = "SELECT * FROM etudiants";
         $stmt = $this->pdo->query($sql);
-        $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function listerMatieres()
     {
         $sql = "SELECT * FROM matieres";
         $stmt = $this->pdo->query($sql);
-        $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function listerNotes()
@@ -74,6 +74,6 @@ VALUES (:id_etudiant, :id_matiere, :valeurNote)";
         $sql = "SELECT * FROM notes";
 
         $stmt = $this->pdo->query($sql);
-        $stmt->fetchAll(PDO::FETCH_ASSOC);
+       return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
