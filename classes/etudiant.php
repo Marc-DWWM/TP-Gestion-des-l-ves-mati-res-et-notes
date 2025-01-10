@@ -19,9 +19,12 @@ class Etudiant
 
     public function setNom($nom)
     {
+
         if (empty($nom)) {
             throw new \Exception("Le nom ne peut pas être vide !");
         }
+
+
         $this->nom = $nom;
     }
 
