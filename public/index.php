@@ -37,40 +37,53 @@ if (empty($_SESSION['csrf_token'])) {
 
 </nav>
 
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-200 text-gray-800">
+
     <main class="p-4">
+
         <p class="text-lg flex items-center justify-center">Utilisez le menu pour gérer les étudiants, matières et notes.</p>
-        <h2 class="text-2xl font-bold mt-6 flex items-center justify-center underline">Etudiants</h2>
-        <div class="flex space-x-4 flex items-center justify-center">
+
+        <h2 class="text-2xl font-bold mt-6 flex aligns-center justify-center underline">Etudiants</h2>
+
+        <div class="space-x-4 columns-3 p-5 max-w-full overflow-hidden text-center">
             <?php foreach ($gestion->listerEtudiants() as $gestions) :  ?>
-                <p>Nom : <?= htmlspecialchars($gestions['nom'], ENT_QUOTES, 'UTF-8') ?>
-                Prénom : <?= htmlspecialchars($gestions['prenom'], ENT_QUOTES, 'UTF-8') ?>
-                Matricule : <?= htmlspecialchars($gestions['matricule'], ENT_QUOTES, 'UTF-8') ?></p>
+                <p class="p-1"><span class="font-bold underline">Nom</span> <?= htmlspecialchars($gestions['nom'], ENT_QUOTES, 'UTF-8') ?></p>
+                <p class="p-1"><span class="font-bold underline">Prénom</span> <?= htmlspecialchars($gestions['prenom'], ENT_QUOTES, 'UTF-8') ?></p>
+                <p class="p-1"><span class="font-bold underline">Matricule</span> <?= htmlspecialchars($gestions['matricule'], ENT_QUOTES, 'UTF-8') ?></p>
             <?php endforeach; ?>
         </div>
+
         <h2 class="text-2xl font-bold mt-6 flex items-center justify-center underline">Matières</h2>
-        <div class="flex space-x-4 flex items-center justify-center">
+
+        <div class="columns-3 p-5 text-center space-x-4  max-w-full overflow-hidden">
             <?php foreach ($gestion->listerMatieres() as $gestions) :  ?>
-                <p>Nom de la matière : <?= htmlspecialchars($gestions['nomMatiere'], ENT_QUOTES, 'UTF-8') ?>
-                Code de la matière : <?= htmlspecialchars($gestions['codeMatiere'], ENT_QUOTES, 'UTF-8') ?></p>
+                <p class="text-center p-1"><span class="font-bold underline">Nom matière</span> <?= htmlspecialchars($gestions['nomMatiere'], ENT_QUOTES, 'UTF-8') ?></p>
+                <p class="text-center p-1"> <span class="font-bold underline">Code matière</span> <?= htmlspecialchars($gestions['codeMatiere'], ENT_QUOTES, 'UTF-8') ?></p>
             <?php endforeach; ?>
         </div>
+
         <h2 class="text-2xl font-bold mt-6 flex items-center justify-center underline">Notes</h2>
-        <div class="flex space-x-4 flex items-center justify-center">
+
+        <div class="space-x-4 p-5 columns-3 max-w-full overflow-hidden">
             <?php foreach ($gestion->listerNotes() as $gestions) :  ?>
-                <p>Id de l'étudiant : <?= htmlspecialchars($gestions['id_etudiant'], ENT_QUOTES, 'UTF-8') ?>
-                Id de la matière : <?= htmlspecialchars($gestions['id_matiere'], ENT_QUOTES, 'UTF-8') ?>
-                Note : <?= htmlspecialchars($gestions['valeurNote'], ENT_QUOTES, 'UTF-8') ?></p>
+                <p class="text-center p-1"><span class="font-bold underline">Id étudiant</span> <?= htmlspecialchars($gestions['id_etudiant'], ENT_QUOTES, 'UTF-8') ?></p>
+                <p class="text-center p-1"><span class="font-bold underline">Id matière</span> <?= htmlspecialchars($gestions['id_matiere'], ENT_QUOTES, 'UTF-8') ?></p>
+                <p class="text-center p-1"><span class="font-bold underline">Note</span> <?= htmlspecialchars($gestions['valeurNote'], ENT_QUOTES, 'UTF-8') ?></p>
             <?php endforeach; ?>
         </div>
+
         <h2 class="text-2xl font-bold mt-6 flex items-center justify-center underline">Moyenne notes étudiants</h2>
-        <div class="flex space-x-4 flex items-center justify-center">
+
+        <div class="space-x-4 columns-3 p-5 max-w-full overflow-hidden">
             <?php foreach ($gestion->calculerMoyenneEtudiant() as $gestions) :  ?>
-                <p>Id de l'étudiant : <?= htmlspecialchars($gestions['id_etudiant'], ENT_QUOTES, 'UTF-8') ?>
-                Moyenne de l'étudiant : <?= htmlspecialchars($gestions["AVG(valeurNote)"], ENT_QUOTES, 'UTF-8') ?></p>
+                <p class="text-center p-1"><span class="font-bold underline">Id étudiant</span> <?= htmlspecialchars($gestions['id_etudiant'], ENT_QUOTES, 'UTF-8') ?>
+                    <span class="font-bold underline">Moyenne</span> <?= htmlspecialchars($gestions["AVG(valeurNote)"], ENT_QUOTES, 'UTF-8') ?>
+                </p>
             <?php endforeach; ?>
         </div>
+
     </main>
+
 </body>
 
 </html>

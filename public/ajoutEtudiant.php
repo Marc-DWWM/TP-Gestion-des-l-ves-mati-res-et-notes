@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(empty($_SESSION['csrf_token'])) {
+if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 
@@ -26,11 +26,17 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['matricule']
 
     <title>Document</title>
 </head>
+<header class="bg-red-500 text-white p-4">
+    <h1 class="text-3xl font-bold flex items-center justify-center">Formulaire pour ajouter un élèves</h1>
+</header>
+<nav class="bg-red-800 text-white p-4 flex space-x-4 flex items-center justify-center">
+    <a href="index.php" class="hover:underline">Revenir à la page de gestion</a>
+</nav>
 
-<body>
-    <form action="traitementEtudiant.php" method="POST">
-    <input type="hidden" name="csrf_token" 
-    value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
+<body class="bg-gray-200 text-gray-800">
+    <form action="traitementEtudiant.php" method="POST" class="flex">
+        <input type="hidden" name="csrf_token"
+            value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
         <div>
             <label for="nom">Nom : </label>
             <input type="text" name="nom" id="nom">
