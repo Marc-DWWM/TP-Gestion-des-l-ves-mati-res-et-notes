@@ -1,4 +1,5 @@
 <?php
+include_once __DIR__ . '/Personne.php';
 include_once __DIR__ . '/Etudiant.php';
 include_once __DIR__ . '/Matiere.php';
 include_once __DIR__ . '/Note.php';
@@ -47,9 +48,32 @@ VALUES (:id_etudiant, :id_matiere, :valeurNote)";
 
     public function calculerMoyenneEtudiant()
     {
-        $sql = "SELECT id_etudiant, AVG(valeurNote)
-        FROM notes
-        GROUP BY id_etudiant";
+        $sql = "SELECT 
+    etudiants.id AS idEtudiant,
+    etudiants.nom AS nomEtudiant,
+    etudiants.prenom AS prenomEtudiant,
+    matieres.nomMatiere AS nomMatiere,
+    notes.id AS idNote,
+    notes.valeurNote AS valeurNote,
+    moyenne.moyenneParMatiere
+FROM 
+    etudiants
+LEFT JOIN 
+    notes ON etudiants.id = notes.id_etudiant
+LEFT JOIN 
+    matieres ON notes.id_matiere = matieres.id
+LEFT JOIN (
+    SELECT 
+        id_etudiant,
+        id_matiere,
+        AVG(valeurNote) AS moyenneParMatiere
+    FROM 
+        notes
+    GROUP BY 
+        id_etudiant, id_matiere
+) AS moyenne ON notes.id_etudiant = moyenne.id_etudiant AND notes.id_matiere = moyenne.id_matiere
+ORDER BY 
+    etudiants.nom, etudiants.prenom, matieres.nomMatiere, notes.id;";
 
         $stmt = $this->pdo->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
