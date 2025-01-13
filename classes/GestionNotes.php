@@ -1,9 +1,11 @@
 <?php
-include_once __DIR__ . '/Personne.php';
-include_once __DIR__ . '/Etudiant.php';
-include_once __DIR__ . '/Matiere.php';
-include_once __DIR__ . '/Note.php';
-include_once __DIR__ . '/../includes/Database.php';
+require_once __DIR__ . '/Personne.php';
+require_once __DIR__ . '/Etudiant.php';
+require_once __DIR__ . '/Matiere.php';
+require_once __DIR__ . '/MatiereSur10.php';
+require_once __DIR__ . '/MatiereSur20.php';
+require_once __DIR__ . '/Note.php';
+require_once __DIR__ . '/../includes/Database.php';
 
 
 
@@ -30,11 +32,11 @@ class GestionNote
     public function ajouterMatiere(Matiere $matiere)
     {
 
-        $sql = "INSERT INTO matieres (nomMatiere, codeMatiere)
-VALUES (:nomMatiere, :codeMatiere)";
+        $sql = "INSERT INTO matieres (nomMatiere, codeMatiere, bareme)
+VALUES (:nomMatiere, :codeMatiere, :bareme)";
 
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([':nomMatiere' => $matiere->getNomMatiere(), ':codeMatiere' => $matiere->getCodeMatiere()]);
+        $stmt->execute([':nomMatiere' => $matiere->getNomMatiere(), ':codeMatiere' => $matiere->getCodeMatiere(), ':bareme' => $matiere->getBareme()]);
     }
 
     public function attribuerNote(Note $note)

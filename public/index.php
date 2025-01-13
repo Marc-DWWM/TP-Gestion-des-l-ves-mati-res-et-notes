@@ -30,7 +30,7 @@ if (empty($_SESSION['csrf_token'])) {
 
 <body class="bg-gray-200 text-gray-800">
 
-    <header class="bg-red-500 text-white p-4">
+    <header class="bg-red-600 text-white p-4">
         <h1 class="text-3xl font-bold flex items-center justify-center">Bienvenue sur la page de gestion</h1>
     </header>
     <nav class="bg-red-800 text-white p-4 flex space-x-4 flex items-center justify-center">
@@ -90,7 +90,7 @@ if (empty($_SESSION['csrf_token'])) {
         </div>
 
     </main>
-
+    <footer class="bg-red-800 flex items-center justify-center font-bold h-28 text-white">Site de Marc DWWM</footer>
 </body>
 
 </html>

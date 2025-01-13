@@ -1,14 +1,15 @@
 <?php
-class Matiere
+abstract class Matiere
 {
-    private $nomMatiere;
-    private $codeMatiere;
-
-    public function __construct($nomMatiere, $codeMatiere)
+    protected $nomMatiere;
+    protected $codeMatiere;
+    protected $bareme;
+    public function __construct($nomMatiere, $codeMatiere, $bareme)
     {
 
         $this->setNomMatiere($nomMatiere);
         $this->setCodeMatiere($codeMatiere);
+        $this->bareme = $bareme;
     }
 
     public function getNomMatiere()
@@ -27,16 +28,25 @@ class Matiere
         $this->nomMatiere = $nomMatiere;
     }
 
-    public function getCodeMatiere() {
+    public function getCodeMatiere()
+    {
         return $this->codeMatiere;
     }
 
-    public function setCodeMatiere($codeMatiere) {
+    public function setCodeMatiere($codeMatiere)
+    {
 
-        if(empty($codeMatiere)) {
+        if (empty($codeMatiere)) {
             throw new \Exception("Le code de la matière ne peut être vide !");
         }
         $this->codeMatiere = $codeMatiere;
     }
+
+    public function getBareme() {
+        return $this->bareme;
+    }
+
+    abstract function validerNote($valeurNote):bool;
+
+
 }
-?>

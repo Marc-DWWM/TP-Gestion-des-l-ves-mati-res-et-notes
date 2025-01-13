@@ -7,8 +7,17 @@ $pdo = Database::getConnection();
 
 $nomMatiere = trim($_POST['nomMatiere'] ?? "");
 $codeMatiere = trim($_POST['codeMatiere'] ?? "");
-$matiere = new Matiere($nomMatiere, $codeMatiere);
+$bareme = intval($_POST['bareme'] ?? 20);
 $gestion = new GestionNote();
+$matiere;
+
+if($bareme == 10){
+    $matiere = new MatiereSur10($nomMatiere, $codeMatiere); 
+
+}
+else {
+ $matiere = new MatiereSur20($nomMatiere, $codeMatiere);
+}
 
 $gestion->ajouterMatiere($matiere);
 
